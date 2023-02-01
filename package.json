@@ -1,16 +1,22 @@
 {
-  "name": "redis-module",
+  "name": "@mistercoookie/nestjs-redis-pub-sub",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MisterCoookie/NestJS-Redis-Pub-Sub"
+  },
   "version": "1.0.0",
-  "description": "",
+  "description": "A nest Js module to use redis as a pub sub",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && tsc",
-    "prepublish": "npm run build"
+    "build": "rimraf dist && tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "mistercookie",
   "license": "ISC",
   "dependencies": {
     "@nestjs/common": "^9.2.1",
