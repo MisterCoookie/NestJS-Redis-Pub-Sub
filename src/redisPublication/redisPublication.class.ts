@@ -1,8 +1,14 @@
+/**
+ * CREATED AT: 2023-02-01
+ * UPDATED AT: 2023-02-01 
+ * 
+ * AUTHOR: ELISABETH Nathanaël
+ */
 import {RedisPublicationDto} from "./redisPublication.dto";
 
-export class RedisPublication {
+export class RedisPublication<T> {
 
-  private _publishedData: string;
+  private _publishedData: T;
   private _answerChannel: string | undefined;
 
   constructor(redisPublicationDto: RedisPublicationDto) {
@@ -14,7 +20,7 @@ export class RedisPublication {
     return this._answerChannel != undefined
   }
 
-  get publishedData(): string {
+  get publishedData(): T {
     return this._publishedData
   }
 
@@ -22,7 +28,10 @@ export class RedisPublication {
     return this._answerChannel
   }
 
-  get export () {
+  /**
+   * @returns { string } return stringified publication
+   */
+  get export (): string {
     const exportData = {
       publishedData: this.publishedData
     }
@@ -30,10 +39,7 @@ export class RedisPublication {
     if(this.expectingAnswer) {
       exportData["answerChannel"] = this.answerChannel
     }
-
-    console.log(exportData)
-    console.log(JSON.stringify(exportData))
-
+    
     return JSON.stringify(exportData)
   }
 }
