@@ -69,11 +69,11 @@ export class RedisService {
    * @param timeout { number } A timeout for a response ( in ms ), default 10000 ms
    * @returns The answer of the requested information
    */
-  publishWithAnswer<T>(channel: string, content: T, timeout: number = 10000) {
+  publishWithAnswer<C, R>(channel: string, content: C, timeout: number = 10000) {
     return new Promise((resolve, reject) => {
       const subChannel = v4() + "_" + channel
 
-      this.subscribeChannel(subChannel ,(redisPublication: RedisPublication<T>) => {
+      this.subscribeChannel(subChannel ,(redisPublication: RedisPublication<C>) => {
         resolve(redisPublication.publishedData)
       })
 
@@ -81,7 +81,7 @@ export class RedisService {
         reject('AnswerTimeout')
       }, timeout)
 
-      const publication = new RedisPublication<T>({publishedData: content, answerChannel: subChannel})
+      const publication = new RedisPublication<R>({publishedData: content, answerChannel: subChannel})
       this.client.publish(channel, publication.export)
     })
   }
