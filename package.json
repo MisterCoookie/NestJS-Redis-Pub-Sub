@@ -22,6 +22,7 @@
     "@nestjs/common": "^9.2.1",
     "@nestjs/config": "^2.2.0",
     "@types/node": "^18.11.18",
+    "class-validator": "^0.14.0",
     "redis": "^4.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^4.1.1",
