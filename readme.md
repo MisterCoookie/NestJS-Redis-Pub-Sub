@@ -3,105 +3,69 @@
 npm i @mistercoookie/nestjs-redis-pub-sub
 ```
 
-# Usages
-Import the module inside the modules you need :
+# Initialization
 
-```
-import { RedisModule } from '@mistercoookie/nestjs-redis-pub-sub'
-
-@Module({
-    import: [RedisModule]
-})
+```ts
+import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
+RedisService.initService("<yout-redis url>")
 ```
 
 # Subscription
 
-```
+```ts
 import { RedisService, RedisPublication } from '@mistercoookie/nestjs-redis-pub-sub'
 
-@Controller()
-export class YourController {
-
-    constructor(
-        private redisService: RedisService,
-    ) {
-        this.redisService.subscribeChannel('Your Channel', (redisPublication: RedisPublication) => {
-            this.onYourChannel(redisPublication)
-        })
+RedisService.subscribeChannel(
+    'Your Channel',
+    (redisPublication: RedisPublication) => {
+        // Your logic
     }
-
-    onYourChannel(redisPublication) {
-        // Your Logic
-    }
-}
+)
 ```
-> Make sure the ```RedisModule``` is imported in the same module of the controller
 
 # Publication
 
-```
+```ts
 import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
 
-@Controller()
-export class YourController {
-
-    constructor(
-        private redisService: RedisService,
-    ) {}
-
-    @Post()
-    yourEndpoint(data) {
-        this.redisService.publish('Your Channel', 'Some Data')
-    }
-}
+RedisService.publish('Your Channel', 'Some Data')
 ```
-> Make sure the ```RedisModule``` is imported in the same module of the controller
 
 # Publication with needed response
 
 ## Publisher
 
-```
+```ts
 import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
 
-@Controller()
-export class YourController {
-
-    constructor(
-        private redisService: RedisService,
-    ) {}
-
-    @Post()
-    async yourEndpoint(data) {
-        const answer = await this.redisService.publishWithAnswer('Your Channel', 'Some Data')
-    }
-}
+async function yourFunction(
+    const answer = await RedisService.publishWithAnswer(
+        'Your Channel',
+        'Some Data'
+    )
+)
 ```
-> Make sure the ```RedisModule``` is imported in the same module of the controller
 
 ## Subscriber
-
-```
+```ts
 import { RedisService, RedisPublication } from '@mistercoookie/nestjs-redis-pub-sub'
 
-@Controller()
-export class YourController {
-
-    constructor(
-        private redisService: RedisService,
-    ) {
-        this.redisService.subscribeChannel('Your Channel', (redisPublication: RedisPublication) => {
-            this.onYourChannel(redisPublication)
-        })
-    }
-
-    onYourChannel(redisPublication: RedisPublication) {
-        // Your Logic
-        if (redisPublication.expectingAnswer) {
-            this.redisService.publish(daredisPublicationta.answerChannel, answerData)
-        }
+onYourChannel(redisPublication: RedisPublication) {
+    // Your Logic
+    if (redisPublication.expectingAnswer) {
+        RedisService.publish(
+            daredisPublicationta.answerChannel,
+            answerData
+        )
     }
 }
+
+RedisService.subscribeChannel(
+    'Your Channel',
+    (redisPublication: RedisPublication) => {
+        this.onYourChannel(redisPublication)
+    }
+)
 ```
 
 # Author
