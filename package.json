@@ -1,0 +1,26 @@
+{
+  "name": "@mistercoookie/nestjs-redis-pub-sub",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MisterCoookie/NestJS-Redis-Pub-Sub"
+  },
+  "version": "1.0.3",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "mistercookie",
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^9.0.0",
+    "redis": "^4.6.4",
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.0"
+  }
+}
