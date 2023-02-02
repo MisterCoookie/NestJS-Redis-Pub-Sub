@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/MisterCoookie/NestJS-Redis-Pub-Sub"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A nest Js module to use redis as a pub sub",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

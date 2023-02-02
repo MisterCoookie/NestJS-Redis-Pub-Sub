@@ -9,7 +9,7 @@ import {ConfigModule} from "@nestjs/config";
 import {RedisService} from "./redis.service";
 
 @Module({
-  imports: [ConfigModule],
+  imports: [ConfigModule.forRoot()],
   providers: [RedisService],
   exports: [RedisService]
 })
