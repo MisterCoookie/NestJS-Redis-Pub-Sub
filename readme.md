@@ -1,19 +1,19 @@
 # Installation
 ```
-npm i @mistercoookie/nestjs-redis-pub-sub
+npm i @mistercoookie/redis-pub-sub
 ```
 
 # Initialization
 
 ```ts
-import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
+import { RedisService } from '@mistercoookie/redis-pub-sub'
 RedisService.initService("<yout-redis url>")
 ```
 
 # Subscription
 
 ```ts
-import { RedisService, RedisPublication } from '@mistercoookie/nestjs-redis-pub-sub'
+import { RedisService, RedisPublication } from '@mistercoookie/redis-pub-sub'
 
 RedisService.subscribeChannel(
     'Your Channel',
@@ -26,7 +26,7 @@ RedisService.subscribeChannel(
 # Publication
 
 ```ts
-import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
+import { RedisService } from '@mistercoookie/redis-pub-sub'
 
 RedisService.publish('Your Channel', 'Some Data')
 ```
@@ -36,7 +36,7 @@ RedisService.publish('Your Channel', 'Some Data')
 ## Publisher
 
 ```ts
-import { RedisService } from '@mistercoookie/nestjs-redis-pub-sub'
+import { RedisService } from '@mistercoookie/redis-pub-sub'
 
 async function yourFunction(
     const answer = await RedisService.publishWithAnswer(
@@ -48,7 +48,7 @@ async function yourFunction(
 
 ## Subscriber
 ```ts
-import { RedisService, RedisPublication } from '@mistercoookie/nestjs-redis-pub-sub'
+import { RedisService, RedisPublication } from '@mistercoookie/redis-pub-sub'
 
 onYourChannel(redisPublication: RedisPublication) {
     // Your Logic
